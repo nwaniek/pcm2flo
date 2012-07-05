@@ -1,0 +1,19 @@
+pcm2flo converts pcm files containing optical flow information to the
+more commonly used middlebury .flo format. As both file types only
+differ in their file header, the tool essentially reads the pcm file
+header, checks correctness and writes the data back to a flo file.
+
+PCM file:
+	PC
+	w h
+	max_val
+	u0v0u1v1...unvn
+
+FLO file:
+	PIEH
+	wh
+	u0v0u1v1...unvn
+
+As my data is restricted to be correct FLO data (flo assumes values
+larger than 1e09 to be unknown optical flow), there is no check for the
+max_val argument and value limits.
